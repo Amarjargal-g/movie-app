@@ -1,16 +1,16 @@
 import { Movie } from "@/lib/type";
-import { MovieCard } from "@/components/ui/MovieCard";
+import { MovieCard } from "@/components/my-components/MovieCard";
 
-type PopularMoviesProps = {
+type TopMoviesProps = {
   movies: Movie[];
 };
 
-export const PopularMovies = ({ movies }: PopularMoviesProps) => {
+export const TopMovies = ({ movies }: TopMoviesProps) => {
   return (
-    <div>
-      <div className="flex gap-5">
+    <div className="m-2">
+      <div className="flex justify-between">
         {" "}
-        <h1>Popular</h1>
+        <h1 className="font-bold">Top Movies</h1>
         <button>See more → </button>
       </div>
       <div className="grid grid-cols-2 gap-2">

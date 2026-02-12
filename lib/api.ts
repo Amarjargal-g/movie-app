@@ -36,3 +36,12 @@ export const getTopMovies = async () => {
 
   return movies;
 };
+
+export const getMovieById = async (movieId: string): Promise<MovieDetails> => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}?language=en-USa`,
+    options,
+  );
+  const movies = await response.json();
+  return movies;
+};

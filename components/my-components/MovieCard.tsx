@@ -13,16 +13,16 @@ export const MovieCard = ({ posterPath, name, rating }: MovieCardProps) => {
   const posterUrl = `https://image.tmdb.org/t/p/w500${posterPath}`;
 
   return (
-    <div className="flex  m-2 p-2 w-100">
-      <Card>
-        <CardContent>
-          <div className="relative w-50 h-60">
-            <Image src={posterUrl} alt={name} fill className="object-cover" />
+    <div>
+      <Card className="flex overflow-hidden">
+        <CardContent className="p-0">
+          <div className="relative w-40 h-60">
+            <Image src={posterUrl} alt={name} fill className=" object-cover" />
           </div>
         </CardContent>
-        <div className="flex gap-1">
-          <Star />
-          <CardHeader>{rating}</CardHeader>
+        <div className="flex">
+          <Star color="#FDE047" />
+          <span>{rating}/10</span>
         </div>
         <CardTitle>{name}</CardTitle>
       </Card>
