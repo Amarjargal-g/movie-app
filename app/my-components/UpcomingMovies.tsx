@@ -30,12 +30,13 @@ export const UpcomingMovies = ({ movies }: UpcomingMoviesProps) => {
       <div className="grid grid-cols-2 gap-2">
         {movies.map((movie) => {
           return (
-            <MovieCard
-              posterPath={movie.poster_path}
-              name={movie.title}
-              key={movie.id}
-              rating={movie.vote_average}
-            />
+            <Link href={`/${movie.id}`} key={movie.id}>
+              <MovieCard
+                posterPath={movie.poster_path}
+                name={movie.title}
+                rating={movie.vote_average}
+              />
+            </Link>
           );
         })}
       </div>

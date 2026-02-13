@@ -3,17 +3,17 @@ import { Movie } from "@/lib/type";
 import { MovieCard } from "@/app/my-components/MovieCard";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { getUpcomingMovies } from "@/lib/api";
+import { getTopMovies } from "@/lib/api";
 
-type UpcomingMoviesProps = {
+type TopMoviesProps = {
   movies: Movie[];
 };
 
-export const UpcomingMovies = ({ movies }: UpcomingMoviesProps) => {
+export const TopMovies = ({ movies }: TopMoviesProps) => {
   const [movie, setMovie] = useState<Movie[]>([]);
   useEffect(() => {
     const fetchMovies = async () => {
-      const { results } = await getUpcomingMovies();
+      const { results } = await getTopMovies();
       setMovie(results);
     };
     fetchMovies();
@@ -22,20 +22,21 @@ export const UpcomingMovies = ({ movies }: UpcomingMoviesProps) => {
     <div className="m-2">
       <div className="flex justify-between">
         {" "}
-        <h1 className="font-bold">Upcoming Movies</h1>
-        <Link href="/upcoming">
+        <h1 className="font-bold">Top Movies</h1>
+        <Link href="/top">
           <button>See more → </button>
         </Link>
       </div>
       <div className="grid grid-cols-2 gap-2">
         {movies.map((movie) => {
           return (
-            <MovieCard
-              posterPath={movie.poster_path}
-              name={movie.title}
-              key={movie.id}
-              rating={movie.vote_average}
-            />
+            <Link href={`/${movie.id}`} key={movie.id}>
+              <MovieCard
+                posterPath={movie.poster_path}
+                name={movie.title}
+                rating={movie.vote_average}
+              />
+            </Link>
           );
         })}
       </div>

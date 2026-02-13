@@ -7,6 +7,7 @@ type DetailsPageProps = {
 async function Details({ params }: DetailsPageProps) {
   const { movieId } = await params;
   const movie = await getMovieById(movieId);
+
   return (
     <div>
       <img

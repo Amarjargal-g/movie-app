@@ -1,11 +1,11 @@
 // import { Header } from "@/components/ui/Header";
-import { PopularMovies } from "@/components/my-components/PopularMovies";
-import { TopMovies } from "@/components/my-components/TopMovies";
+import { PopularMovies } from "@/app/my-components/PopularMovies";
+import { TopMovies } from "@/app/my-components/TopMovies";
 import { getPopularMovies } from "../lib/api";
 import { getUpcomingMovies } from "../lib/api";
 import { getTopMovies } from "../lib/api";
-import { UpcomingMovies } from "@/components/my-components/UpcomingMovies";
-import { Hero } from "@/components/my-components/Hero";
+import { UpcomingMovies } from "@/app/my-components/UpcomingMovies";
+import { Hero } from "@/app/my-components/Hero";
 import {
   Carousel,
   CarouselContent,
@@ -14,13 +14,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import { Footer } from "@/components/my-components/Footer";
+import { Footer } from "@/app/my-components/Footer";
 
 const Home = async () => {
   const { results: popular } = await getPopularMovies();
   const { results: upcoming } = await getUpcomingMovies();
   const { results: top } = await getTopMovies();
-
   return (
     <div className="w-[375]">
       <div>
