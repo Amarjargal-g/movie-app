@@ -21,9 +21,9 @@ const Home = async () => {
   const { results: upcoming } = await getUpcomingMovies();
   const { results: top } = await getTopMovies();
   return (
-    <div className="w-[375]">
+    <div className="min-h-screen ">
       <div>
-        <Carousel className="w-full max-w-7xl mx-auto px-12">
+        <Carousel className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <CarouselContent>
             {popular.slice(0, 3).map((movie, index) => (
               <CarouselItem key={movie.id}>
@@ -37,16 +37,18 @@ const Home = async () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="hidden md:block">
-            <CarouselPrevious className="left-3" />
-            <CarouselNext className="right-3" />
+          <div className="hidden md:flex">
+            <CarouselPrevious className="left-2 lg:left-4" />
+            <CarouselNext className="right-2 lg:right-4" />
           </div>
         </Carousel>
       </div>
-      <PopularMovies movies={popular} />
-      <UpcomingMovies movies={upcoming} />
-      <TopMovies movies={top} />
-      <Footer />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-12 mt-12">
+        <PopularMovies movies={popular} />
+        <UpcomingMovies movies={upcoming} />
+        <TopMovies movies={top} />
+        <Footer />
+      </div>
     </div>
   );
 };

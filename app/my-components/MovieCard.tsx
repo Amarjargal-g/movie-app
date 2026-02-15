@@ -14,17 +14,19 @@ export const MovieCard = ({ posterPath, name, rating }: MovieCardProps) => {
 
   return (
     <div>
-      <Card className="flex overflow-hidden">
-        <CardContent className="p-0">
-          <div className="relative w-40 h-60">
+      <Card className=" overflow-hidden">
+        <CardContent className="p-3 space-y-1">
+          <div className="relative w-full aspect-2/3">
             <Image src={posterUrl} alt="pic" fill className=" object-cover" />
           </div>
         </CardContent>
-        <div className="flex">
-          <Star color="#FDE047" />
+        <div className="flex gap-1">
+          <Star className="h-4 w-4 text-white fill-white m-1 " />
           <span>{rating}/10</span>
         </div>
-        <CardTitle>{name}</CardTitle>
+        <CardTitle className="text-sm sm:text-base line-clamp-2">
+          {name}
+        </CardTitle>
       </Card>
     </div>
   );

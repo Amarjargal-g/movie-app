@@ -12,25 +12,29 @@ export const Hero = (probs: HeroCardProps) => {
   const backdropUrl = `https://image.tmdb.org/t/p/original${backdrop_path}`;
   return (
     <div>
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full h-75 sm:h-100 md:h-125 lg:h-150">
         <img
           className="  w-full h-full object-cover"
           src={backdropUrl}
           alt="Backround"
         />
       </div>
-      {/* <div className="flex justify-between"> */}
-      {/* <div>
+      <div className="flex justify-between">
+        <div>
           <p>Now playing</p>
-          <h1 className="font-bold">{name}</h1>
+          <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold">
+            {name}
+          </h1>
         </div>
         <div className="flex gap-1 m-2">
-          <Star color="" />
+          <Star className="h-4 w-4 text-white fill-white m-1" />
           <span>{rating}/10</span>
         </div>
       </div>
-      <p>{description}</p>
-      <Button variant={"outline"}>▷ Watch Trailer</Button> */}
+      <p className="text-sm md:text-base line-clamp-3 md:line-clamp-none">
+        {description}
+      </p>
+      <Button variant={"outline"}>▷ Watch Trailer</Button>
     </div>
   );
 };

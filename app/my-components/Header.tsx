@@ -4,16 +4,22 @@ import { Search } from "lucide-react";
 
 export const Header = () => {
   return (
-    <div className="flex w-100 justify-between p-2 m-2">
-      <div className="mt-2">
-        <img src="Logo.png" alt="logo" />
+    <header className="w-full">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-12 py-3">
+        <div className="mt-2">
+          <img
+            src="Logo.png"
+            alt="logo"
+            className="w-24 sm:w-28 md:w-32 h-auto"
+          />
+        </div>
+        <div className="flex items-center gap-2 sm:gap-3  ">
+          <Button variant={"outline"} size="icon">
+            <Search className="h-4 w-4 sm:h-5 sm:w-5" />
+          </Button>
+          <ModeToggle />
+        </div>
       </div>
-      <div className="flex gap-2">
-        <Button variant={"outline"} size="icon">
-          <Search />
-        </Button>
-        <ModeToggle />
-      </div>
-    </div>
+    </header>
   );
 };

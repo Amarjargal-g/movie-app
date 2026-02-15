@@ -27,7 +27,7 @@ export const UpcomingMovies = ({ movies }: UpcomingMoviesProps) => {
           <button>See more → </button>
         </Link>
       </div>
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {movies.map((movie) => {
           return (
             <Link href={`/${movie.id}`} key={movie.id}>

@@ -5,8 +5,10 @@ import { getTopMovies } from "@/lib/api";
 const TopMoviesPage = async () => {
   const { results } = await getTopMovies();
   return (
-    <div>
-      <TopMovies movies={[results]} />
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8">
+        <TopMovies movies={[results]} />
+      </div>
       <Footer />
     </div>
   );
