@@ -45,3 +45,15 @@ export const getMovieById = async (movieId: string): Promise<Movie> => {
   const movies = await response.json();
   return movies;
 };
+
+export const getMovieBySearchValue = async (
+  searchValue: string,
+  page = 1,
+): Promise<Response> => {
+  const response = await fetch(
+    `${baseUrl}/search/movie?query=${searchValue}&language=en-US&page=${page}`,
+    options,
+  );
+  const movies = await response.json();
+  return movies;
+};
