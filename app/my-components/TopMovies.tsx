@@ -9,18 +9,18 @@ type TopMoviesProps = {
   movies: Movie[];
 };
 
-export const TopMovies = ({ movies }: TopMoviesProps) => {
+export const TopMovies = ({}: TopMoviesProps) => {
   const [movie, setMovie] = useState<Movie[]>([]);
   useEffect(() => {
     const fetchMovies = async () => {
-      const { results } = await getTopMovies();
+      const { results } = await getTopMovies("1");
       setMovie(results);
     };
     fetchMovies();
   }, []);
   return (
-    <div className="m-2">
-      <div className="flex justify-between">
+    <div>
+      <div className="flex justify-between m-2">
         {" "}
         <h1 className="font-bold">Top Movies</h1>
         <Link href="/top">
@@ -28,7 +28,7 @@ export const TopMovies = ({ movies }: TopMoviesProps) => {
         </Link>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {movies.map((movie) => {
+        {movie.map((movie) => {
           return (
             <Link href={`/${movie.id}`} key={movie.id}>
               <MovieCard

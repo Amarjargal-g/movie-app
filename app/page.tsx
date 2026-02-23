@@ -15,27 +15,41 @@ import {
 } from "@/components/ui/carousel";
 
 import { Footer } from "@/app/my-components/Footer";
+import { Key } from "react";
 
 const Home = async () => {
-  const { results: popular } = await getPopularMovies();
-  const { results: upcoming } = await getUpcomingMovies();
-  const { results: top } = await getTopMovies();
+  const { results: popular } = await getPopularMovies("1");
+  const { results: upcoming } = await getUpcomingMovies("1");
+  const { results: top } = await getTopMovies("1");
   return (
     <div className="min-h-screen ">
       <div>
         <Carousel className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <CarouselContent>
-            {popular.slice(0, 3).map((movie, index) => (
-              <CarouselItem key={movie.id}>
-                <Hero
-                  key={index}
-                  backdrop_path={movie.backdrop_path}
-                  name={movie.title}
-                  rating={movie.vote_average}
-                  description={movie.overview}
-                />
-              </CarouselItem>
-            ))}
+            {popular
+              .slice(0, 3)
+              .map(
+                (
+                  movie: {
+                    id: Key | null | undefined;
+                    backdrop_path: string;
+                    title: string;
+                    vote_average: number;
+                    overview: string;
+                  },
+                  index: Key | null | undefined,
+                ) => (
+                  <CarouselItem key={movie.id}>
+                    <Hero
+                      key={index}
+                      backdrop_path={movie.backdrop_path}
+                      name={movie.title}
+                      rating={movie.vote_average}
+                      description={movie.overview}
+                    />
+                  </CarouselItem>
+                ),
+              )}
           </CarouselContent>
           <div className="hidden md:flex">
             <CarouselPrevious className="left-2 lg:left-4" />

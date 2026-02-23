@@ -4,16 +4,17 @@ import { useEffect, useState } from "react";
 import { MovieCard } from "@/app/my-components/MovieCard";
 import Link from "next/link";
 import { getPopularMovies } from "@/lib/api";
+import PopularPagination from "./PopularPagination";
 
 type PopularMoviesProps = {
   movies: Movie[];
 };
 
-export const PopularMovies = ({ movies }: PopularMoviesProps) => {
+export const PopularMovies = ({}: PopularMoviesProps) => {
   const [movie, setMovie] = useState<Movie[]>([]);
   useEffect(() => {
     const fetchMovies = async () => {
-      const { results } = await getPopularMovies();
+      const { results } = await getPopularMovies("1");
       setMovie(results);
     };
     fetchMovies();
@@ -28,7 +29,7 @@ export const PopularMovies = ({ movies }: PopularMoviesProps) => {
         </Link>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {movies.map((movie) => {
+        {movie.map((movie) => {
           return (
             <Link href={`/${movie.id}`} key={movie.id}>
               <MovieCard
@@ -39,6 +40,11 @@ export const PopularMovies = ({ movies }: PopularMoviesProps) => {
             </Link>
           );
         })}
+        <PopularPagination
+          searchParams={{
+            page: undefined,
+          }}
+        />
       </div>
     </div>
   );
