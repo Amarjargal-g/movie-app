@@ -1,4 +1,4 @@
-import { Movie, Response } from "./type";
+import { Genre, GenreList, Movie, Response } from "./type";
 
 const baseUrl = process.env.BASE_URL;
 
@@ -59,6 +59,25 @@ export const getMovieBySearchValue = async (
     `${baseUrl}/search/movie?query=${searchValue}&language=en-US&page=${page}`,
     options,
   );
+  const movies = await response.json();
+  return movies;
+};
+
+export const getGenres = async (): Promise<GenreList> => {
+  const response = await fetch(
+    "https://api.themoviedb.org/3/genre/movie/list",
+    options,
+  );
+  const movies = await response.json();
+  return movies;
+};
+
+export const getMoviesByGenre = async (genreIds: string): Promise<Movie> => {
+  const response = await fetch(
+    `${baseUrl}/discover/movie?language=en&with_genres=${genreIds}`,
+    options,
+  );
+
   const movies = await response.json();
   return movies;
 };

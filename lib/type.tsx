@@ -21,3 +21,12 @@ export type Movie = {
   vote_average: number;
   vote_count: number;
 };
+
+export type Genre = {
+  id: string;
+  name: string;
+};
+
+export type GenreList = {
+  genres: Genre[];
+};

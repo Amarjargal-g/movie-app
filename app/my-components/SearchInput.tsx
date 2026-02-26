@@ -70,7 +70,7 @@ export const SearchInput = () => {
           {!showAll && movies.length > 5 && (
             <button
               onClick={() => setShowAll(true)}
-              className="p-2 text-sm text-blue-400 hover:underline"
+              className="p-2 text-sm text-white"
             >
               See All Results
             </button>

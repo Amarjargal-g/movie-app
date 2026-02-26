@@ -8,6 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { GenreList } from "./GenreList";
 
 export const DropDownMenu = () => {
   return (
@@ -18,71 +19,7 @@ export const DropDownMenu = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuGroup>
-            <DropdownMenuLabel>Genres</DropdownMenuLabel>
-            <p className="w-full p-1">See lists of movies by genre</p>
-          </DropdownMenuGroup>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup className="grid grid-cols-3 gap-1 p-2">
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Action ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Adventure ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Adventure ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Animation ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Biography ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Comedy ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Crime ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Documentary ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Drama ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Family ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Fantasy ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Film-Noir ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Game-Show ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              History ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Horror ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Music ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Musical ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Mistery ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              News ▸
-            </DropdownMenuItem>
-            <DropdownMenuItem className="border rounded-full text-xs">
-              Reality-Tv ▸
-            </DropdownMenuItem>
+            <GenreList />
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
