@@ -3,16 +3,13 @@
 import { Genre as GenreType } from "@/lib/api";
 
 import { Genre } from "./Genre";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export const GenreList = ({
-  selectedGenre,
-  genres,
-}: {
-  selectedGenre: string | string[] | undefined;
-  genres: GenreType[];
-}) => {
+export const GenreList = ({ genres }: { genres: GenreType[] }) => {
   const router = useRouter();
+  const params = useSearchParams();
+  const selectedGenre = params.get("genre");
+
   const onSelectGenre = (newGenre: string) => {
     if (!selectedGenre) {
       router.push(`/search?genre=${newGenre}`);

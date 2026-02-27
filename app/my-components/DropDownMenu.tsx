@@ -9,8 +9,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { GenreList } from "./GenreList";
+import { getGenres } from "@/lib/api";
 
-export const DropDownMenu = () => {
+export const DropDownMenu = async () => {
+  const { genres } = await getGenres();
   return (
     <div>
       <DropdownMenu>
@@ -19,7 +21,7 @@ export const DropDownMenu = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuGroup>
-            <GenreList />
+            <GenreList genres={genres} />
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
