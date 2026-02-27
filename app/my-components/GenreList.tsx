@@ -1,9 +1,36 @@
-import { getGenres } from "@/lib/api";
-import Link from "next/link";
-import { Genre } from "./Genre";
+"use client";
 
-export const GenreList = async () => {
-  const { genres } = await getGenres();
+import { Genre as GenreType } from "@/lib/api";
+
+import { Genre } from "./Genre";
+import { useRouter } from "next/navigation";
+
+export const GenreList = ({
+  selectedGenre,
+  genres,
+}: {
+  selectedGenre: string | string[] | undefined;
+  genres: GenreType[];
+}) => {
+  const router = useRouter();
+  const onSelectGenre = (newGenre: string) => {
+    if (!selectedGenre) {
+      router.push(`/search?genre=${newGenre}`);
+      return;
+    }
+    const oldGenres = String(selectedGenre)
+      .split(",")
+      .filter((value) => value);
+
+    const isIncluded = oldGenres.includes(newGenre);
+    if (!isIncluded) {
+      let newGenres = [...oldGenres, newGenre];
+      router.push(`/search?genre=${newGenres}`);
+    } else {
+      const newGenres = oldGenres.filter((genre) => genre !== newGenre);
+      router.push(`/search?gone=${newGenres}`);
+    }
+  };
 
   return (
     <div>
@@ -12,9 +39,17 @@ export const GenreList = async () => {
       <div className="grid grid-cols-3 gap-2">
         {genres.map((genre) => {
           return (
-            <Link key={genre.id} href={`/genre?genreId=${genre.id}`}>
+            <div
+              key={genre.id}
+              onClick={() => onSelectGenre(String(genre.id))}
+              className={
+                String(selectedGenre).split(",").includes(String(genre.id))
+                  ? "selected"
+                  : ""
+              }
+            >
               <Genre genre={genre} />
-            </Link>
+            </div>
           );
         })}
       </div>

@@ -1,11 +1,11 @@
 // import { Header } from "@/components/ui/Header";
-import { PopularMovies } from "@/app/my-components/PopularMovies";
-import { TopMovies } from "@/app/my-components/TopMovies";
+import { PopularMovies } from "@/app/my-components/MoviePages/PopularMovies";
+import { TopMovies } from "@/app/my-components/MoviePages/TopMovies";
 import { getPopularMovies } from "../lib/api";
 import { getUpcomingMovies } from "../lib/api";
 import { getTopMovies } from "../lib/api";
-import { UpcomingMovies } from "@/app/my-components/UpcomingMovies";
-import { Hero } from "@/app/my-components/Hero";
+import { UpcomingMovies } from "@/app/my-components/MoviePages/UpcomingMovies";
+import { Hero } from "./my-components/Accessories/Hero";
 import {
   Carousel,
   CarouselContent,
@@ -14,7 +14,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import { Footer } from "@/app/my-components/Footer";
+import { Footer } from "@/app/my-components/Accessories/Footer";
 import { Key } from "react";
 
 const Home = async () => {
@@ -36,7 +36,7 @@ const Home = async () => {
                   vote_average: number;
                   overview: string;
                 },
-                index: Key | null | undefined,
+                index: Key | null | undefined
               ) => (
                 <CarouselItem key={movie.id}>
                   <Hero
@@ -47,7 +47,7 @@ const Home = async () => {
                     description={movie.overview}
                   />
                 </CarouselItem>
-              ),
+              )
             )}
           </CarouselContent>
           <div className="hidden md:flex">

@@ -1,7 +1,7 @@
-import { Footer } from "@/app/my-components/Footer";
-import { PopularMovies } from "@/app/my-components/PopularMovies";
+import { Footer } from "@/app/my-components/Accessories/Footer";
+import { PopularMovies } from "@/app/my-components/MoviePages/PopularMovies";
 import { getPopularMovies } from "@/lib/api";
-import PopularPagination from "../my-components/PopularPagination";
+import PopularPagination from "../my-components/Paginations/PopularPagination";
 
 type PopularMoviesPageProps = {
   searchParams: Promise<{ page: string | undefined }>;

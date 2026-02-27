@@ -1,7 +1,7 @@
-import { Footer } from "@/app/my-components/Footer";
-import { TopMovies } from "@/app/my-components/TopMovies";
+import { Footer } from "@/app/my-components/Accessories/Footer";
+import { TopMovies } from "@/app/my-components/MoviePages/TopMovies";
 import { getTopMovies } from "@/lib/api";
-import TopPagination from "../my-components/TopPagination";
+import TopPagination from "../my-components/Paginations/TopPagination";
 
 type TopMoviesPageProps = {
   searchParams: Promise<{ page: string | undefined }>;

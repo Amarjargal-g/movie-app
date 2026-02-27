@@ -1,7 +1,7 @@
 import { getUpcomingMovies } from "@/lib/api";
-import { UpcomingMovies } from "@/app/my-components/UpcomingMovies";
-import { Footer } from "@/app/my-components/Footer";
-import UpcomingPagination from "../my-components/UpcomingPagination";
+import { UpcomingMovies } from "@/app/my-components/MoviePages/UpcomingMovies";
+import { Footer } from "@/app/my-components/Accessories/Footer";
+import UpcomingPagination from "../my-components/Paginations/UpcomingPagination";
 
 type UpcomingMoviesPageProps = {
   searchParams: Promise<{ page: string | undefined }>;

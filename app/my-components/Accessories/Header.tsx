@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { ModeToggle } from "../../toggle-mode";
+import { ModeToggle } from "../../../toggle-mode";
 import { Search } from "lucide-react";
-import { SearchInput } from "./SearchInput";
-import { DropDownMenu } from "./DropDownMenu";
+import { SearchInput } from "../SearchInput";
+import { DropDownMenu } from "../DropDownMenu";
 
 export const Header = () => {
   return (

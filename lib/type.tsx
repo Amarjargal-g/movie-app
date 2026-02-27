@@ -23,7 +23,7 @@ export type Movie = {
 };
 
 export type Genre = {
-  id: string;
+  id: number;
   name: string;
 };
 
