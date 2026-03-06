@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import { Star, ChevronRight, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 type HeroCardProps = {
   backdrop_path: string;

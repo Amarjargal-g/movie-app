@@ -59,7 +59,6 @@ export const SearchInput = () => {
 
       {!loading && movies.length > 0 && (
         <div className="absolute top-full mt-2 w-80 flex flex-col border border-zinc-700 rounded-md z-50 bg-black shadow-lg overflow-hidden">
-          {/* Show only the first 5 movies */}
           {movies.slice(0, 5).map((movie) => (
             <div
               key={movie.id}
