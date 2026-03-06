@@ -1,5 +1,6 @@
 "use client";
 import { ChangeEventHandler, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { getMovieBySearchValue } from "@/lib/api";
 import { Movie } from "@/lib/type";
 import { Input } from "@/components/ui/input";
@@ -8,11 +9,16 @@ export const SearchInput = () => {
   const [searchValue, setSearchValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [showAll, setShowAll] = useState(false);
+  const router = useRouter();
+
+  const handleSeeAll = () => {
+    router.push(`/search?q=${encodeURIComponent(searchValue)}`);
+
+    setMovies([]);
+  };
 
   const onChangeSearchValue: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchValue(event.target.value);
-    setShowAll(false);
   };
 
   useEffect(() => {
@@ -27,7 +33,6 @@ export const SearchInput = () => {
 
     const timer = setTimeout(async () => {
       const data = await getMovieBySearchValue(searchValue);
-
       if (isActive) {
         setMovies(data.results);
         setLoading(false);
@@ -46,35 +51,42 @@ export const SearchInput = () => {
         placeholder="Search..."
         value={searchValue}
         onChange={onChangeSearchValue}
+        onKeyDown={(e) => e.key === "Enter" && handleSeeAll()}
         className="max-w-xs mx-auto"
       />
 
-      {loading && <p>⟳</p>}
+      {loading && <p className="absolute right-3 top-2">⟳</p>}
 
       {!loading && movies.length > 0 && (
-        <div className="absolute top-full mt-2 w-105 flex flex-col gap-2 border border-zinc-700 rounded-md z-50 bg-black shadow-lg">
-          {(showAll ? movies : movies.slice(0, 5)).map((movie) => (
+        <div className="absolute top-full mt-2 w-80 flex flex-col border border-zinc-700 rounded-md z-50 bg-black shadow-lg overflow-hidden">
+          {/* Show only the first 5 movies */}
+          {movies.slice(0, 5).map((movie) => (
             <div
               key={movie.id}
-              className="flex gap-3 p-2 hover:bg-zinc-800 cursor-pointer"
+              className="flex gap-3 p-2 hover:bg-zinc-800 cursor-pointer border-b border-zinc-800 last:border-0"
+              onClick={() => router.push(`/movie/${movie.id}`)}
             >
               <img
-                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                src={
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+                    : "/no-image.png"
+                }
                 alt={movie.title}
-                className="w-12 h-18 object-cover rounded"
+                className="w-10 h-14 object-cover rounded"
               />
-              <span className="text-sm">{movie.title}</span>
+              <span className="text-sm self-center truncate">
+                {movie.title}
+              </span>
             </div>
           ))}
 
-          {!showAll && movies.length > 5 && (
-            <button
-              onClick={() => setShowAll(true)}
-              className="p-2 text-sm text-white"
-            >
-              See All Results
-            </button>
-          )}
+          <button
+            onClick={handleSeeAll}
+            className="p-3 text-sm text-blue-400 hover:bg-zinc-800 font-bold border-t border-zinc-700"
+          >
+            See all results for "{searchValue}"
+          </button>
         </div>
       )}
     </div>

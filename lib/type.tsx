@@ -6,6 +6,7 @@ export type Response = {
 };
 
 export type Movie = {
+  results: any;
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
