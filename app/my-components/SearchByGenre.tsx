@@ -6,56 +6,41 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
   genres: GenreType[];
-  selectedGenre?: string | string[];
 };
 
 export const GenreList = ({ genres }: Props) => {
   const router = useRouter();
-  const params = useSearchParams();
+  const searchParams = useSearchParams();
 
-  const currentGenresRaw = params.get("genre") || "";
+  const currentGenreParam = searchParams.get("genre") || "";
+  const selectedGenres = currentGenreParam ? currentGenreParam.split(",") : [];
 
-  const onSelectGenre = (newGenre: string) => {
-    if (!currentGenresRaw) {
-      router.push(`/search?genre=${newGenre}`);
-      return;
-    }
+  const onSelectGenre = (id: string) => {
+    let newGenreList: string[];
 
-    const oldGenres = currentGenresRaw.split(",").filter((value) => value);
-
-    const isIncluded = oldGenres.includes(newGenre);
-
-    if (!isIncluded) {
-      const newGenres = [...oldGenres, newGenre];
-      router.push(`/search?genre=${newGenres.join(",")}`);
+    if (selectedGenres.includes(id)) {
+      newGenreList = selectedGenres.filter((g) => g !== id);
     } else {
-      const newGenres = oldGenres.filter((genre) => genre !== newGenre);
-
-      router.push(`/search?genre=${newGenres.join(",")}`);
+      newGenreList = [...selectedGenres, id];
     }
+
+    const query =
+      newGenreList.length > 0 ? `?genre=${newGenreList.join(",")}` : "";
+
+    router.push(`/genre${query}`);
   };
 
   return (
-    <div>
-      <h1>Search by genre</h1>
-      <p>See lists of movies by genre</p>
-      <div className="grid grid-cols-3 gap-2">
-        {genres.map((genre) => {
-          return (
-            <div
-              key={genre.id}
-              onClick={() => onSelectGenre(String(genre.id))}
-              className={
-                currentGenresRaw.split(",").includes(String(genre.id))
-                  ? "selected"
-                  : ""
-              }
-            >
-              <Genre genre={genre} />
-            </div>
-          );
-        })}
-      </div>
+    <div className="grid grid-cols-5 gap-3">
+      {genres.map((genre) => (
+        <div
+          key={genre.id}
+          onClick={() => onSelectGenre(String(genre.id))}
+          className="cursor-pointer rounded-full border border-zinc-700 px-3 py-1.5 text-sm flex items-center justify-between transition-colors whitespace-nowrap hover:bg-zinc-800"
+        >
+          <Genre genre={genre} />
+        </div>
+      ))}
     </div>
   );
 };

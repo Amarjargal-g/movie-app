@@ -1,4 +1,7 @@
+import { JSX } from "react/jsx-runtime";
+
 export type Response = {
+  map(arg0: (movie: Movie) => JSX.Element): import("react").ReactNode;
   page: number;
   results: Movie[];
   total_pages: number;
@@ -10,6 +13,7 @@ export type Movie = {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
+  genres: { id: number; name: string }[];
   id: number;
   original_language: string;
   original_title: string;
@@ -17,6 +21,7 @@ export type Movie = {
   popularity: number;
   poster_path: string;
   release_date: string;
+  runtime: number;
   title: string;
   video: boolean;
   vote_average: number;

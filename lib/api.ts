@@ -81,3 +81,28 @@ export const getMoviesByGenre = async (genreIds: string): Promise<Response> => {
   return response.json();
 };
 export type { Genre };
+
+export const getMovieVideos = async (movieId: string) => {
+  const response = await fetch(
+    `${baseUrl}/movie/${movieId}/videos?language=en-US`,
+    options,
+  );
+  const movies = await response.json();
+  return movies;
+};
+
+export const getMovieCredits = async (movieId: string) => {
+  const response = await fetch(
+    `${baseUrl}/movie/${movieId}/credits?language=en-US`,
+    options,
+  );
+  return response.json();
+};
+
+export const getSimilarMovies = async (movieId: string) => {
+  const response = await fetch(
+    `${baseUrl}/movie/${movieId}/similar?language=en-US`,
+    options,
+  );
+  return response.json();
+};

@@ -10,14 +10,20 @@ type PopularMoviesPageProps = {
 const PopularMoviesPage = async ({ searchParams }: PopularMoviesPageProps) => {
   const page = (await searchParams).page ?? "1";
   const { results } = await getPopularMovies(page);
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8">
-        <PopularMovies movies={results} />
+    <div className="min-h-screen flex flex-col bg-black">
+      <div className="flex-1 max-w-480 mx-auto px-8 md:px-16 lg:px-24 py-16">
+        <PopularMovies movies={results} showSeeMore={false} />
+
+        <div className="mt-20">
+          <PopularPagination searchParams={searchParams} />
+        </div>
       </div>
-      <PopularPagination searchParams={searchParams} />
+
       <Footer />
     </div>
   );
 };
+
 export default PopularMoviesPage;

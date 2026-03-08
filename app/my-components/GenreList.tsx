@@ -27,35 +27,20 @@ export const GenreList = ({ genres }: Props) => {
     const query =
       newGenreList.length > 0 ? `?genre=${newGenreList.join(",")}` : "";
 
-    router.push(`/search${query}`);
+    router.push(`/genre${query}`);
   };
 
   return (
-    <section>
-      <header className="mb-4">
-        <h1 className="text-xl font-bold">Search by genre</h1>
-        <p className="text-gray-500">See lists of movies by genre</p>
-      </header>
-
-      <div className="grid grid-cols-3 gap-2">
-        {genres.map((genre) => {
-          const isSelected = selectedGenres.includes(String(genre.id));
-
-          return (
-            <div
-              key={genre.id}
-              onClick={() => onSelectGenre(String(genre.id))}
-              className={`cursor-pointer transition-colors ${
-                isSelected
-                  ? "ring-2 ring-blue-500 bg-blue-50"
-                  : "hover:bg-gray-100"
-              }`}
-            >
-              <Genre genre={genre} />
-            </div>
-          );
-        })}
-      </div>
-    </section>
+    <div className="grid grid-cols-5 gap-3">
+      {genres.map((genre) => (
+        <div
+          key={genre.id}
+          onClick={() => onSelectGenre(String(genre.id))}
+          className="cursor-pointer rounded-full border border-border px-3 py-1.5 text-sm flex items-center justify-between transition-colors whitespace-nowrap hover:bg-muted"
+        >
+          <Genre genre={genre} />
+        </div>
+      ))}
+    </div>
   );
 };
