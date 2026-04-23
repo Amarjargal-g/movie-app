@@ -105,18 +105,18 @@ export const SearchInput = () => {
               />
 
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-white truncate">{movie.title}</p>
+                <p className="font-bold text-foreground truncate">{movie.title}</p>
                 <div className="flex items-center gap-1 mt-1">
                   <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
                   <span className="text-sm">
                     <span className="text-yellow-400">
                       {movie.vote_average?.toFixed(1)}
                     </span>
-                    <span className="text-white">/10</span>
+                    <span className="text-muted-foreground">/10</span>
                   </span>
                 </div>
                 {movie.release_date && (
-                  <p className="text-sm text-gray-400 mt-1">
+                  <p className="text-sm text-muted-foreground mt-1">
                     {new Date(movie.release_date).getFullYear()}
                   </p>
                 )}
@@ -124,7 +124,7 @@ export const SearchInput = () => {
 
               <button
                 onClick={() => handleMovieClick(movie.id)}
-                className="text-sm text-white shrink-0 flex items-center gap-1 hover:text-gray-300"
+                className="text-sm text-foreground shrink-0 flex items-center gap-1 hover:text-muted-foreground"
               >
                 See more →
               </button>
@@ -133,10 +133,10 @@ export const SearchInput = () => {
 
           <button
             onClick={handleSeeAll}
-            className="px-4 py-3 text-sm text-gray-400 hover:bg-muted text-left border-t  "
+            className="px-4 py-3 text-sm text-muted-foreground hover:bg-muted text-left border-t"
           >
             See all results for{" "}
-            <span className="text-white font-semibold">{searchValue}</span>
+            <span className="text-foreground font-semibold">{searchValue}</span>
           </button>
         </div>
       )}

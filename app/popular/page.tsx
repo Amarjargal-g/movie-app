@@ -12,7 +12,7 @@ const PopularMoviesPage = async ({ searchParams }: PopularMoviesPageProps) => {
   const { results } = await getPopularMovies(page);
 
   return (
-    <div className="min-h-screen flex flex-col bg-black">
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
       <div className="flex-1 max-w-480 mx-auto px-8 md:px-16 lg:px-24 py-16">
         <PopularMovies movies={results} showSeeMore={false} />
 

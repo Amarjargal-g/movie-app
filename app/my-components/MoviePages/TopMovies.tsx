@@ -12,11 +12,12 @@ export const TopMovies = ({ movies, showSeeMore = true }: TopMoviesProps) => {
   return (
     <div>
       <div className="flex justify-between m-6">
-        {" "}
-        <h1 className="text-2xl font-bold text-white">Top Movies</h1>
+        <h1 className="text-2xl font-bold text-foreground">Top Movies</h1>
         {showSeeMore && (
           <Link href="/top">
-            <button>See more → </button>
+            <button className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              See more →
+            </button>
           </Link>
         )}
       </div>

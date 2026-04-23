@@ -15,11 +15,11 @@ export const PopularMovies = ({
   return (
     <div>
       <div className="flex justify-between items-center mb-8 px-6">
-        <h1 className="text-2xl font-bold text-white">Popular</h1>
+        <h1 className="text-2xl font-bold text-foreground">Popular</h1>
 
         {showSeeMore && (
           <Link href="/popular">
-            <button className="text-sm text-gray-400 hover:text-white transition-colors">
+            <button className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               See more →
             </button>
           </Link>

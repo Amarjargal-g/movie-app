@@ -99,9 +99,9 @@ export const getMovieCredits = async (movieId: string) => {
   return response.json();
 };
 
-export const getSimilarMovies = async (movieId: string) => {
+export const getSimilarMovies = async (movieId: string, page = "1") => {
   const response = await fetch(
-    `${baseUrl}/movie/${movieId}/similar?language=en-US`,
+    `${baseUrl}/movie/${movieId}/similar?language=en-US&page=${page}`,
     options,
   );
   return response.json();

@@ -37,7 +37,7 @@ export default async function Top({ searchParams }: TopProps) {
               <PaginationItem>
                 <PaginationPrevious
                   href={`?page=${currentPage - 1}`}
-                  className="bg-transparent border-none text-gray-500 hover:text-white transition-colors"
+                  className="bg-transparent border-none text-muted-foreground hover:text-foreground transition-colors"
                 />
               </PaginationItem>
             )}
@@ -49,8 +49,8 @@ export default async function Top({ searchParams }: TopProps) {
                   isActive={pageNum === currentPage}
                   className={`bg-transparent border-none shadow-none text-base transition-all ${
                     pageNum === currentPage
-                      ? "text-white font-bold scale-110"
-                      : "text-gray-500 hover:text-white"
+                      ? "text-foreground font-bold scale-110"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {pageNum}
@@ -60,7 +60,7 @@ export default async function Top({ searchParams }: TopProps) {
 
             {currentPage < total_pages - 1 && (
               <PaginationItem>
-                <PaginationEllipsis className="text-gray-700 border-none" />
+                <PaginationEllipsis className="text-muted-foreground border-none" />
               </PaginationItem>
             )}
 
@@ -68,7 +68,7 @@ export default async function Top({ searchParams }: TopProps) {
               <PaginationItem>
                 <PaginationNext
                   href={`?page=${currentPage + 1}`}
-                  className="bg-transparent border-none text-gray-500 hover:text-white transition-colors"
+                  className="bg-transparent border-none text-muted-foreground hover:text-foreground transition-colors"
                 />
               </PaginationItem>
             )}

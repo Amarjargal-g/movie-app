@@ -16,7 +16,7 @@ const GenrePage = async ({ searchParams }: GenrePageProps) => {
   if (!selectedGenre) {
     return (
       <div className="p-10 text-center">
-        <p className="text-gray-500">
+        <p className="text-muted-foreground">
           No genre selected. Please pick one from the list.
         </p>
       </div>
@@ -64,12 +64,14 @@ const GenrePage = async ({ searchParams }: GenrePageProps) => {
                   <div className="p-3 flex flex-col gap-1">
                     <div className="flex items-center gap-1.5">
                       <Star className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400" />
-                      <span className="text-white text-sm font-bold">
+                      <span className="text-foreground text-sm font-bold">
                         {movie.vote_average?.toFixed(1)}
                       </span>
-                      <span className="text-[10px] text-gray-400">/10</span>
+                      <span className="text-[10px] text-muted-foreground">
+                        /10
+                      </span>
                     </div>
-                    <h3 className="text-white text-sm font-medium line-clamp-1 leading-snug">
+                    <h3 className="text-foreground text-sm font-medium line-clamp-1 leading-snug">
                       {movie.title}
                     </h3>
                   </div>
@@ -77,7 +79,7 @@ const GenrePage = async ({ searchParams }: GenrePageProps) => {
               </Link>
             ))
           ) : (
-            <p className="col-span-full text-center py-10 text-gray-500">
+            <p className="col-span-full text-center py-10 text-muted-foreground">
               No movies found.
             </p>
           )}

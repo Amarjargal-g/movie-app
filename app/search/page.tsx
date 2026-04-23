@@ -13,7 +13,7 @@ export default async function SearchResultsPage({
 
   if (!searchQuery)
     return (
-      <p className="p-20 text-center text-gray-500">
+      <p className="p-20 text-center text-muted-foreground">
         Please enter a search term.
       </p>
     );
@@ -35,7 +35,7 @@ export default async function SearchResultsPage({
           <h1 className="text-2xl md:text-3xl font-bold mb-1">
             Search Results
           </h1>
-          <p className="text-gray-500 text-sm">
+          <p className="text-muted-foreground text-sm">
             {movies?.length ?? 0} results for {searchQuery}
           </p>
         </div>
@@ -46,7 +46,7 @@ export default async function SearchResultsPage({
               <div className="flex flex-col items-center justify-center py-32 text-center">
                 <p className="text-5xl mb-4">🎬</p>
                 <p className="text-xl font-semibold mb-2">No movies found</p>
-                <p className="text-gray-400 text-sm">
+                <p className="text-muted-foreground text-sm">
                   Try searching for a different title
                 </p>
               </div>
@@ -69,15 +69,16 @@ export default async function SearchResultsPage({
 
           <div className="hidden lg:block shrink-0 w-125">
             <h2 className="text-lg font-bold mb-1">Search by genre</h2>
-            <p className="text-gray-400 text-sm mb-3">
+            <p className="text-muted-foreground text-sm mb-3">
               See lists of movies by genre
             </p>
-            <hr className="border-zinc-700 mb-4" />
+            <hr className="border-border mb-4" />
             <div className="grid grid-cols-4 gap-2">
               {genres?.map((genre: { id: number; name: string }) => (
                 <Link key={genre.id} href={`/genre?id=${genre.id}`}>
-                  <span className="flex items-center justify-between px-3 py-1.5 rounded-full border border-zinc-700 text-sm text-foreground hover:bg-zinc-800 cursor-pointer transition-colors whitespace-nowrap">
-                    {genre.name} <span className="text-gray-500 ml-1">›</span>
+                  <span className="flex items-center justify-between px-3 py-1.5 rounded-full border border-border text-sm text-foreground hover:bg-accent cursor-pointer transition-colors whitespace-nowrap">
+                    {genre.name}{" "}
+                    <span className="text-muted-foreground ml-1">›</span>
                   </span>
                 </Link>
               ))}

@@ -11,7 +11,7 @@ const Home = async () => {
   const { results: top } = await getTopMovies("1");
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-background text-foreground">
       <HeroCarousel movies={popular} />
 
       <div className="max-w-480 mx-auto px-8 md:px-16 lg:px-24 space-y-32 mt-20 pb-40">

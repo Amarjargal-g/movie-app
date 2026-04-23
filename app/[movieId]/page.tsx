@@ -4,9 +4,8 @@ import {
   getMovieCredits,
   getSimilarMovies,
 } from "@/lib/api";
-import { MovieCard } from "@/app/my-components/MovieCard";
+import { SimilarMovies } from "@/app/my-components/MoviePages/SimilarMovies";
 import { Star, Play } from "lucide-react";
-import Link from "next/link";
 
 type DetailsPageProps = {
   params: Promise<{ movieId: string }>;
@@ -44,23 +43,25 @@ async function Details({ params }: DetailsPageProps) {
             <h1 className="text-4xl md:text-6xl font-bold mb-3">
               {movie.title}
             </h1>
-            <p className="text-gray-400 text-sm tracking-wide">
+            <p className="text-muted-foreground text-sm tracking-wide">
               {movie.release_date}
               {movie.runtime && <span> · {movie.runtime}m</span>}
             </p>
           </div>
           <div className="text-right shrink-0 ml-8">
-            <p className="text-gray-400 text-xs uppercase tracking-widest mb-1">
+            <p className="text-muted-foreground text-xs uppercase tracking-widest mb-1">
               Rating
             </p>
             <div className="flex items-center gap-1 justify-end">
               <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
               <span className="text-2xl font-bold">
                 {movie.vote_average?.toFixed(1)}
-                <span className="text-gray-400 text-sm font-normal">/10</span>
+                <span className="text-muted-foreground text-sm font-normal">
+                  /10
+                </span>
               </span>
             </div>
-            <p className="text-gray-500 text-xs mt-1">
+            <p className="text-muted-foreground text-xs mt-1">
               {movie.vote_count >= 1000
                 ? `${(movie.vote_count / 1000).toFixed(0)}k votes`
                 : `${movie.vote_count} votes`}
@@ -105,7 +106,7 @@ async function Details({ params }: DetailsPageProps) {
             {movie.genres.map((genre: { id: number; name: string }) => (
               <span
                 key={genre.id}
-                className="px-4 py-1.5 rounded-full border border-zinc-700 text-sm text-gray-300 hover:border-zinc-500 transition-colors"
+                className="px-4 py-1.5 rounded-full border border-border text-sm text-muted-foreground hover:border-foreground/30 transition-colors"
               >
                 {genre.name}
               </span>
@@ -113,7 +114,7 @@ async function Details({ params }: DetailsPageProps) {
           </div>
         )}
 
-        <p className="text-gray-300 text-base leading-relaxed mb-10">
+        <p className="text-muted-foreground text-base leading-relaxed mb-10">
           {movie.overview}
         </p>
 
@@ -124,9 +125,11 @@ async function Details({ params }: DetailsPageProps) {
                 <span className="font-bold text-base w-28 shrink-0">
                   Director
                 </span>
-                <span className="text-gray-300 text-base">{director.name}</span>
+                <span className="text-muted-foreground text-base">
+                  {director.name}
+                </span>
               </div>
-              <hr className="border-zinc-700" />
+              <hr className="border-border" />
             </>
           )}
           {writers && writers.length > 0 && (
@@ -135,46 +138,28 @@ async function Details({ params }: DetailsPageProps) {
                 <span className="font-bold text-base w-28 shrink-0">
                   Writers
                 </span>
-                <span className="text-gray-300 text-base">
+                <span className="text-muted-foreground text-base">
                   {writers.map((w: { name: string }) => w.name).join(" · ")}
                 </span>
               </div>
-              <hr className="border-zinc-700" />
+              <hr className="border-border" />
             </>
           )}
           {stars && stars.length > 0 && (
             <>
               <div className="flex gap-8 py-5">
                 <span className="font-bold text-base w-28 shrink-0">Stars</span>
-                <span className="text-gray-300 text-base">
+                <span className="text-muted-foreground text-base">
                   {stars.map((s: { name: string }) => s.name).join(" · ")}
                 </span>
               </div>
-              <hr className="border-zinc-700" />
+              <hr className="border-border" />
             </>
           )}
         </div>
 
         {similar?.results?.length > 0 && (
-          <div>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold">More like this</h2>
-              <span className="text-gray-400 text-sm cursor-pointer hover:text-white transition-colors">
-                See more →
-              </span>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-              {similar.results.slice(0, 5).map((m: any) => (
-                <Link key={m.id} href={`/${m.id}`}>
-                  <MovieCard
-                    posterPath={m.poster_path}
-                    name={m.title}
-                    rating={m.vote_average}
-                  />
-                </Link>
-              ))}
-            </div>
-          </div>
+          <SimilarMovies movieId={movieId} movies={similar.results} />
         )}
       </div>
     </div>
